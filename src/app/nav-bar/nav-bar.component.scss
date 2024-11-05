@@ -1,0 +1,27 @@
+.cart-container {
+    position: relative;
+    display: inline-block;
+    width: 32px; /* Slightly larger to avoid overlap */
+    height: 32px;
+  }
+  
+  .cart-container svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .card-no {
+    position: absolute;
+    right: -6px;   /* Move the number to the top-right */
+    top: -6px; /* Move the number up */
+    background-color: #7d3178; /* Mauve color */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

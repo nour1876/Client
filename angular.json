@@ -67,6 +67,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "client:build",
+            "sslKey": "ssl/rabbitmq-cert.key",
+            "sslCert": "ssl/rabbitmq-cert.csr",
+            "ssl": false
+          },
           "configurations": {
             "production": {
               "browserTarget": "Client:build:production"
@@ -96,12 +102,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              
+            
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "49c21758-cfa8-4624-a638-1795593c5e13"
   }
 }
