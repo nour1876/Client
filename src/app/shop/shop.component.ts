@@ -15,6 +15,13 @@ export class ShopComponent implements OnInit {
  types :IType[]=[];
  brandIdSelected =0;
  typeIdSelected =0;
+ sortSelected='name';
+ sortOptions=[
+  {name:'Alphabetical',value:'name'},
+  {name:'Price : Low to High',value:'priceAsc'},
+  {name:'Price : High to Low',value:'priceDesc'}
+
+ ]
 
   constructor(private shopService : ShopService) { }
 
@@ -24,7 +31,7 @@ export class ShopComponent implements OnInit {
   this.getTypes();
   }
   getProducts(){
-    this.shopService.getProducts(this.brandIdSelected,this.typeIdSelected).subscribe(response=>{if (response && response.data) {
+    this.shopService.getProducts(this.brandIdSelected,this.typeIdSelected,this.sortSelected).subscribe(response=>{if (response && response.data) {
       this.products = response.data;
     } else {
       console.log('No data found in response');
@@ -50,4 +57,9 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  onSortSelected(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement; // Type assertion
+    this.sortSelected = selectElement.value; // Access the value safely
+    this.getProducts();
+  }
 }

@@ -11,13 +11,16 @@ export class ShopService {
   baseUrl='http://localhost:5233/api/'
   constructor(private http :HttpClient) { }
 
-  getProducts(brandId?:number,typeId?:number){
+  getProducts(brandId?:number,typeId?:number,sort?:string){
     let params=new HttpParams();
     if(brandId){
       params=params.append('brandId',brandId.toString())
     }
     if(typeId){
       params=params.append('typeId',typeId.toString())
+    }
+    if(sort){
+      params=params.append('sort',sort.toString())
     }
 
     return this.http.get<IPagination>(this.baseUrl+'products',{observe:'response',params}).pipe(
@@ -32,4 +35,5 @@ export class ShopService {
   getTypes(){
     return this.http.get<IType[]>(this.baseUrl+'products/types');
   }
+
 }

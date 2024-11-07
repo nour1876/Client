@@ -3,11 +3,9 @@
         <section class="col-3">
             <div class="mb-3">
                 <h5 class="text-warning ml-3">Sort</h5>
-                <select class="form-select" aria-label="Sort options">
-                    <option value="" disabled selected>Select sorting option</option>
-                    <option value="alphabetical">Alphabetical</option>
-                    <option value="price-high-to-low">Price: High to Low</option>
-                    <option value="price-low-to-high">Price: Low to High</option>
+                <select class="form-select" (change)="onSortSelected($event)">
+                    <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.name}}</option>
+                    
                 </select>
             </div>
             
