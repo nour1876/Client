@@ -10,7 +10,7 @@
   <header class="navbar navbar-expand-lg navbar-custom fixed-top shadow-sm">
     <div class="container-fluid">
       <!-- Logo Section -->
-      <img src="../../assets/images/shoplyHall.jpg" style="max-height: 70px;" alt="logo">
+      <img src="../../assets/images/shoplyHall.jpg" style="max-height: 70px;" alt="logo" routerLink="/" class="logo">
       
       <!-- Toggler for mobile view -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,9 +20,9 @@
       <!-- Navbar Links (Collapsible) -->
       <div class="collapse navbar-collapse text-uppercase" style="font-size: larger;" id="navbarNav">
         <nav class="navbar-nav mx-auto">
-          <a class="nav-link me-3" href="#">Home</a>
-          <a class="nav-link me-3" href="#">Shop</a>
-          <a class="nav-link me-3" href="#">Contact</a>
+          <a class="me-3" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          <a class=" me-3" [routerLink]="['/shop']" routerLinkActive="active">Shop</a>
+          <a class="me-3" href="#">Contact</a>
         </nav>
       </div>
 
