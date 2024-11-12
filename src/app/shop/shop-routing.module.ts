@@ -5,8 +5,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { RouterModule, Routes } from '@angular/router';
 
 const routes : Routes =  [
-{path:'',component:ShopComponent},
-{path:':id',component:ProductDetailsComponent}
+  {
+    path: '',
+    component: ShopComponent,
+  },
+{path:':id',component:ProductDetailsComponent,data: { breadcrumb: {alias:'productDetails'}}}
 ]
 
 @NgModule({

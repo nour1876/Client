@@ -10,9 +10,11 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
+import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
 @NgModule({
   declarations: [
     AppComponent,
+    
        
     
   ],
@@ -22,7 +24,10 @@ import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    HomeModule
+    HomeModule,
+    ShopModule,
+    BreadcrumbModule
+    
 
   ],
   providers: [

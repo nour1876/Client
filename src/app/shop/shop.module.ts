@@ -7,6 +7,8 @@ import { PagingHeaderComponent } from '../shared/Components/paging-header/paging
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RouterModule } from '@angular/router';
 import { ShopRoutingModule } from './shop-routing.module';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { SectionHeaderComponent } from '../core/section-header/section-header.component';
 
 
 @NgModule({
@@ -14,13 +16,16 @@ import { ShopRoutingModule } from './shop-routing.module';
     ShopComponent,
     ProductItemComponent,
     PagingHeaderComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+   
+    
   ],
   imports: [
     CommonModule,
     NgxPaginationModule,
     RouterModule,
-    ShopRoutingModule
+    ShopRoutingModule,
+    BreadcrumbModule,
   ]
 })
 export class ShopModule { }
