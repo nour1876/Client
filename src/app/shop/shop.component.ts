@@ -16,6 +16,7 @@ export class ShopComponent implements OnInit {
  products:IProduct[]=[];
  brands:IBrand[]=[];
  types :IType[]=[];
+ 
  shopParams  = new ShopParams();
  totalCount=0;
  p=0;
@@ -29,6 +30,7 @@ export class ShopComponent implements OnInit {
   constructor(private shopService : ShopService) { }
 
   ngOnInit(): void {
+    console.log('Initialized shopParams:', this.shopParams); 
   this.getProducts();
   this.getBrands();
   this.getTypes();
@@ -36,7 +38,7 @@ export class ShopComponent implements OnInit {
   getProducts(){
     this.shopService.getProducts(this.shopParams).subscribe(response=>{if (response && response.data) {
       this.products = response.data;
-      this.shopParams.pageNumber=response.pageIndex;
+      this.shopParams.pageIndex=response.pageIndex;
       this.shopParams.pageSize=response.pageSize;
       this.totalCount=response.count;
     } else {
@@ -56,12 +58,12 @@ export class ShopComponent implements OnInit {
   }
   onBrandSelected(brandId: number){
     this.shopParams.brandId=brandId;
-    this.shopParams.pageNumber=1;
+    this.shopParams.pageIndex=1;
     this.getProducts();
   }
   onTypeSelected(typeId: number){
     this.shopParams.typeId=typeId;
-    this.shopParams.pageNumber=1;
+    this.shopParams.pageIndex=1;
     this.getProducts();
   }
 
@@ -71,15 +73,17 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
   onPageChanged(event:any){
-    if(this.shopParams.pageNumber != event){
-      this.shopParams.pageNumber=event.page;
+    console.log('onPageChanged event:', event); 
+
+      this.shopParams.pageIndex=event;
+      console.log('Updated shopParams:', this.shopParams);
       this.getProducts();
-    }
+    
    
   }
   onSearch(){
     this.shopParams.search=this.searchTerm.nativeElement.value;
-    this.shopParams.pageNumber=1;
+    this.shopParams.pageIndex=1;
     this.getProducts();
   }
   onReset(){

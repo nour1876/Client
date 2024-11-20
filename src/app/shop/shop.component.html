@@ -26,7 +26,7 @@
         </section>
         <section class="col-9">
             <div class="d-flex justify-content-between align-items-center pb-2">
-            <app-paging-header [totalCount]="totalCount" [pageSize]="this.shopParams.pageSize" [pageNumber]="this.shopParams.pageNumber"></app-paging-header>
+            <app-paging-header [totalCount]="totalCount" [pageSize]="this.shopParams.pageSize" [pageNumber]="this.shopParams.pageIndex"></app-paging-header>
             <div class="d-flex align-items-center" style="gap: 20px;">
                 <input (keyup.enter)="onSearch()" type="text" class="form-control " #search style="width: 300px;" placeholder="Search">
                 <button class="btn btn-outline-primary my-2" (click)="onSearch()" >Search</button>
@@ -38,26 +38,27 @@
                 <div class="container">
             
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col-4" *ngFor="let product of products | paginate: { itemsPerPage: this.shopParams.pageSize, currentPage: this.shopParams.pageNumber, totalItems: totalCount }">
+                    <div class="col-4" *ngFor="let product of products | paginate: { itemsPerPage: this.shopParams.pageSize, currentPage: this.shopParams.pageIndex, totalItems: totalCount }">
                  <app-product-item [product]="product"> </app-product-item>
+                 
                 </div>
-
+               
                   </div>
-                  
+                  <div class="d-flex justify-content-center">
+                    <div style="display: flex; justify-content: center;" *ngIf="totalCount>0">
+                        <pagination-controls
+                          (pageChange)="onPageChanged($event)"
+                          previousLabel="&lsaquo;"
+                          nextLabel="&rsaquo;"
+                          firstLabel="&laquo;"
+                          lastLabel="&raquo;">
+                        </pagination-controls>
+                      </div>
+                  </div>
              
                 </div>
               </div>
-              <div class="d-flex justify-content-center">
-                <div style="display: flex; justify-content: center;" *ngIf="totalCount>0">
-                    <pagination-controls
-                      (pageChange)="onPageChanged($event)"
-                      previousLabel="&lsaquo;"
-                      nextLabel="&rsaquo;"
-                      firstLabel="&laquo;"
-                      lastLabel="&raquo;">
-                    </pagination-controls>
-                  </div>
-              </div>
+             
                   
              
         </section>

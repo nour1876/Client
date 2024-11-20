@@ -24,9 +24,19 @@ export class ShopService {
     if(shopParams.search){
       params=params.append('search',shopParams.search)
     }
+    if (shopParams.pageIndex) {
+      params = params.append('pageIndex', shopParams.pageIndex.toString());
+    } else {
+      console.error('pageNumber is undefined');
+    }
+  
+    if (shopParams.pageSize) {
+      params = params.append('pageSize', shopParams.pageSize.toString());
+    } else {
+      console.error('pageSize is undefined');
+    }
       params=params.append('sort',shopParams.sort.toString())
-     params= params.append('pageIndex',shopParams.pageNumber.toString());
-     params = params.append('pageSize',shopParams.pageSize.toString())
+   
 
     return this.http.get<IPagination>(this.baseUrl+'products',{observe:'response',params}).pipe(
       map(response=>{

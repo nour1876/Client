@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'not-found',component:NotFoundComponent, data:{breadcrumb:'Not Found'}},
   { 
     path: 'shop/:id',
-    component: ProductDetailsComponent},
+    component: ProductDetailsComponent , data:{breadcrumb:{alias:'productDetails'}}},
   //{path:'shop', loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule) , data:{breadcrumb:'Shop'}}, // lazy Loading
     // Main shop route
     {
@@ -26,7 +26,8 @@ const routes: Routes = [
         {
           path: ':id',
           component: ProductDetailsComponent,
-          data: { breadcrumb: {alisas:'productDetails' }},
+          data: { breadcrumb: {alias:'productDetails' },
+        },
         }
       ]
     },

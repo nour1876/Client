@@ -8,8 +8,28 @@ const routes : Routes =  [
   {
     path: '',
     component: ShopComponent,
+    data: { breadcrumb: 'Shop' }
   },
-{path:':id',component:ProductDetailsComponent,data: { breadcrumb: {alias:'productDetails'}}}
+  {
+    path: ':id',
+    component: ProductDetailsComponent,
+    data: { breadcrumb: { alias: 'productDetails' } ,
+  breadcrumb2:{alias:'shop'}} // Alias for breadcrumb
+  },
+     {
+      path: 'shop',
+      component: ShopComponent,
+      data: { breadcrumb: 'Shop' },
+      children: [
+        // Product details as a child of shop
+        {
+          path: ':id',
+          component: ProductDetailsComponent,
+          data: { breadcrumb: {alias:'productDetails' },
+        },
+        }
+      ]
+    },
 ]
 
 @NgModule({

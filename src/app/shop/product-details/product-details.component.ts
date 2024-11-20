@@ -25,7 +25,8 @@ export class ProductDetailsComponent implements OnInit {
         this.shopService.getProduct(+id).subscribe(
             product => {
                 this.product = product;
-                this.bcService.set('@productDetails',product.name)
+                this.bcService.set('@productDetails',`${product.name}`)
+               
             },
             error => {
                 console.log(error);

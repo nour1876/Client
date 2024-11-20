@@ -11,9 +11,11 @@ import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
+import { AddProductComponent } from './admin/add-product/add-product.component';
 @NgModule({
   declarations: [
     AppComponent,
+    AddProductComponent,
     
        
     
