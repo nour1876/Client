@@ -6,6 +6,7 @@ import { ServerErrorComponent } from './core/server-error/server-error.component
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import { BasketComponent } from './basket/basket.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent,data:{breadcrumb:'Home'}},
@@ -31,8 +32,10 @@ const routes: Routes = [
         }
       ]
     },
-    
-    
+    {path: 'basket',
+      component: BasketComponent,
+      data: { breadcrumb: 'Basket' }},
+  //{path:'basket', loadChildren:()=>import('./basket/basket.module').then(mod=>mod.BasketModule) , data:{breadcrumb:'Basket'}}, // lazy Loading
   {path:'**',redirectTo:'not-found',pathMatch:'full'}
 ];
 
