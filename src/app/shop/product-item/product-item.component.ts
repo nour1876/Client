@@ -15,7 +15,6 @@ export class ProductItemComponent implements OnInit {
   }
   addItemToBasket(){
     console.log('entered to AddItems to basket')
-    console.log(this.product)
     this.basketService.addItemToBasket(this.product);
    
   }

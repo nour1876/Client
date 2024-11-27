@@ -12,6 +12,8 @@ import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
 import { AddProductComponent } from './admin/add-product/add-product.component';
+import { BasketComponent } from './basket/basket.component';
+import { BasketModule } from './basket/basket.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
     CoreModule,
     HomeModule,
     ShopModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    BasketModule
+   
     
 
   ],
