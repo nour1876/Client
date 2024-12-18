@@ -29,10 +29,11 @@ export class BasketService {
   }
 
   setBasket(basket:IBasket){
+    console.log(basket);
     return this.http.post<IBasket>(this.baseUrl+'basket',basket).subscribe((response:IBasket)=>{
       this.basketSource.next(response);
       this.calculateTotals();
-      console.log(response);
+      console.log('this is setBasket',response);
     },error=>{
       console.log(error);
     })
@@ -52,7 +53,48 @@ export class BasketService {
   console.log(basket);
   
   }
+  incrementItemQuantity(item:IBasketItem){
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex=basket.items.findIndex(x=>x.id===item.id);
+    basket.items[foundItemIndex].quantity++;
+    this.setBasket(basket);
+  }
+  decrementItemQuantity(item:IBasketItem){
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex=basket.items.findIndex(x=>x.id===item.id);
+    if(basket.items[foundItemIndex].quantity>1){
+      basket.items[foundItemIndex].quantity--;
+      console.log('quantity',basket.items[foundItemIndex].quantity);
+      this.setBasket(basket);
+    }else{
+      this.removeItemFromBasket(item);
+    }
+   
+   
+  }
+  removeItemFromBasket(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if(basket.items.some(x=>x.id===item.id)){
+      basket.items=basket.items.filter(i=> i.id!==item.id);
+      if(basket.items.length>0){
+        this.setBasket(basket);
+      }else{
+        this.deleteBasket(basket);
+      }
+    }
+  }
+  deleteBasket(basket: IBasket) {
+    return this.http.delete(this.baseUrl+'basket?id='+basket.id).subscribe(()=>{
+      this.basketSource.next(null);
+      this.basketTotalSource.next(null);
+      localStorage.removeItem('basket_id');
+
+    },error=>{
+      console.log(error);
+    })
+  }
    calculateTotals(){
+    console.log("entered to totals")
     const basket = this.getCurrentBasketValue();
     const shipping = 0;
     const subtotal = basket.items.reduce((a,b)=>(b.productPrice*b.quantity)+a,0);
@@ -84,16 +126,18 @@ export class BasketService {
 
   }
   mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
+    console.log('this is item',item);
     return {
       id:item.id,
       productName:item.name,
       productPrice:item.price,
       pictureUrl:item.pictureUrl,
-      quantity,
+      quantity:quantity,
       brand:item.productBrand,
       type:item.productType
     };
   }
+  
 }
 
 

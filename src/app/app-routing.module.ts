@@ -7,6 +7,10 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { BasketComponent } from './basket/basket.component';
+import { skip } from 'node:test';
+import { RegisterComponent } from './account/register/register.component';
+import { LoginComponent } from './account/login/login.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent,data:{breadcrumb:'Home'}},
@@ -35,8 +39,13 @@ const routes: Routes = [
     {path: 'basket',
       component: BasketComponent,
       data: { breadcrumb: 'Basket' }},
+
+  {path:'Register',component:RegisterComponent,data:{breadcrumb:'Register'}},
+  {path:'Login',component:LoginComponent,data:{breadcrumb:'Login'}},
+  {path:'checkout',component:CheckoutComponent,data:{breadcrumb:'Checkout'}},
   //{path:'basket', loadChildren:()=>import('./basket/basket.module').then(mod=>mod.BasketModule) , data:{breadcrumb:'Basket'}}, // lazy Loading
   {path:'**',redirectTo:'not-found',pathMatch:'full'}
+  
 ];
 
 @NgModule({

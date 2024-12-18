@@ -36,10 +36,15 @@
             <!-- Card Number -->
             <div *ngIf="(basket$ |async) as basket" class="card-no">{{basket.items.length}}</div> <!-- Example card number -->
         </div>
-
+      <ng-container *ngIf="(currentUser$|async)===null">
         <!-- Login / Signup Buttons -->
-        <a href="#" class="btn btn-outline-secondary ms-3">Login</a>
-        <a href="#" class="btn btn-outline-secondary ms-2">Sign Up</a>
+        <a routerLink="/Login" class="btn btn-outline-secondary ms-3">Login</a>
+        <a routerLink="/Register"  class="btn btn-outline-secondary ms-2">Sign Up</a>
+      </ng-container>
+      <ng-container *ngIf="currentUser$|async">
+        <a href="">Welcome  {{(currentUser$|async).displayName}}</a>
+
+      </ng-container>
       </div>
     </div>
   </header>

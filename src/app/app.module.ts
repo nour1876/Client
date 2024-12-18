@@ -14,6 +14,8 @@ import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { BasketComponent } from './basket/basket.component';
 import { BasketModule } from './basket/basket.module';
+import { AccountModule } from './account/account.module';
+import { CheckoutModule } from './checkout/checkout.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { BasketModule } from './basket/basket.module';
     HomeModule,
     ShopModule,
     BreadcrumbModule,
-    BasketModule
+    BasketModule,
+    AccountModule,
+    CheckoutModule
    
     
 
